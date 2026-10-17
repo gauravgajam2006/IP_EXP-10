@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .error {
+            background: #fde8e8;
+            border: 1px solid #e53e3e;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Student</h1>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+        <label>Roll Number (cannot be changed)</label>
+        <input type="text" value="{{ student.roll }}" disabled>
+
+        <label>Student Name</label>
+        <input type="text" name="student_name" value="{{ student.name }}" required>
+
+        <label>Department</label>
+        <input type="text" name="department" value="{{ student.department }}">
+
+        <label>Email</label>
+        <input type="email" name="email" value="{{ student.email }}">
+
+        <button type="submit">Save Changes</button>
+        <a href="{{ url_for('student_dashboard_portal') }}">Cancel</a>
+    </form>
+</body>
+</html>
